@@ -13,4 +13,5 @@ This project has support for [SocketIO client tool](https://github.com/amritb/so
 
 ## Requirements
 Redis version - 6.2.6
+
 Node version - 14.17.3
