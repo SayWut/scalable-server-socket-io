@@ -6,8 +6,8 @@
  */
 const getClientsIds = async (io) => {
     const sockets = await io.fetchSockets();
-    const onlySockets = sockets.filter((socket) => socket.constructor.name === "Socket")
-    const clientIds = onlySockets.map((socket) => {
+    const clientIds = sockets.map((socket) => {
+        console.log(socket.constructor.name);
         return socket.id;
     });
 
