@@ -50,6 +50,13 @@ class IOClient {
         });
     }
 
+    /**
+     * Sends a message to number of random clients based on `numClients`
+     * 
+     * @param {number} numClients - number of random clients
+     * @param {string} clientId - exclude this client id from random clients 
+     * @param {string} message - message to send
+     */
     async _emitRandomClients(numClients, clientId, message) {
         const clientIds = await ioUtil.getClientsIds(this.#io);
         const randomClientIds = await util.getRandomArray(clientIds, numClients, clientId);

@@ -17,6 +17,9 @@ class IOServer {
     }
 
     
+    /**
+     * Settings redis adapter to io server
+     */
     async setRedisAdapter() {
         const pubClient = redisHandler.duplicate();
         const subClient = redisHandler.duplicate();
@@ -25,6 +28,9 @@ class IOServer {
         this.io.adapter(createAdapter(pubClient, subClient));
     }
 
+    /**
+     * Setting up events
+     */
     _attachEvents() {
         this.io.on("connection", (socket) => {
             console.log("New connection", socket.id);

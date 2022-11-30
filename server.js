@@ -7,6 +7,7 @@ const ioServer = new IOServer(httpServer);
 
 const PORT = process.env.PORT || 8080;
 
+// After setting the adapter starting the io server with http
 ioServer.setRedisAdapter()
     .then(() => {
         httpServer.listen(PORT, () => {
