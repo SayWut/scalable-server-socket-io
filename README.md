@@ -2,6 +2,7 @@
 
 This project is a SocketIO with server scalability using redis adapter
 
+
 This project has support for [SocketIO client tool](https://github.com/amritb/socketio-client-tool)
 
 ## Events
