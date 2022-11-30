@@ -19,12 +19,12 @@ class IOClient {
     _attachEvents() {
         this.socket.on(ClientEvents.SPIN, (data) => {
             const { message } = data;
-            this._emitRandomClients(1, this.socket.id, message);
+            this._emitRandomClients(1, message);
         });
 
         this.socket.on(ClientEvents.WILD, (data) => {
             const { message, numClients } = data;
-            this._emitRandomClients(numClients, this.socket.id, message);
+            this._emitRandomClients(numClients, message);
         });
 
         this.socket.on(ClientEvents.BLAST, (data) => {
@@ -57,11 +57,11 @@ class IOClient {
      * @param {string} clientId - exclude this client id from random clients 
      * @param {string} message - message to send
      */
-    async _emitRandomClients(numClients, clientId, message) {
+    async _emitRandomClients(numClients, message) {
         const clientIds = await ioUtil.getClientsIds(this.#io);
-        const randomClientIds = await util.getRandomArray(clientIds, numClients, clientId);
+        const randomClientIds = await util.getRandomArray(clientIds, numClients, this.socket.id);
         
-        console.log("sending messages to", randomClientIds, "from", clientId);
+        console.log("sending messages to", randomClientIds, "from", this.socket.id);
         this.#io.to(randomClientIds).emit(ClientEvents.MESSAGE, message);
     };
 }
